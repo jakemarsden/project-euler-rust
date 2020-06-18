@@ -18,11 +18,9 @@
 pub fn compute(max_exclusive: u32) -> u32 {
     let mut sum = 0;
     for i in 1..max_exclusive {
-        if i % 3 == 0 {
-            sum += i;
-        } else if i % 5 == 0 {
+        if i % 3 == 0 || i % 5 == 0 {
             sum += i;
         }
     }
-    return sum;
+    sum
 }

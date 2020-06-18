@@ -27,5 +27,5 @@ pub fn compute(n: u64) -> u64 {
         return u64::max(compute(factor1), compute(factor2));
     }
     // no factors, must be prime!
-    return n;
+    n
 }

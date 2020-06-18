@@ -33,7 +33,7 @@ pub fn compute(digits: u32) -> u32 {
             }
         }
     }
-    return max_palindromic_product;
+    max_palindromic_product
 }
 
 fn is_palindromic(n: u32) -> bool {
@@ -56,5 +56,5 @@ fn is_palindromic(n: u32) -> bool {
         front_idx += 1;
         back_idx -= 1;
     }
-    return true;
+    true
 }

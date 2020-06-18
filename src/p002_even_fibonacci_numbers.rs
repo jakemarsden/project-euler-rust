@@ -28,5 +28,5 @@ pub fn compute(max_exclusive: u32) -> u32 {
             sum += n3;
         }
     }
-    return sum;
+    sum
 }
