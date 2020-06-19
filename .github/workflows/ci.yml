@@ -1,0 +1,47 @@
+name: Continuous integration
+on:
+  - push
+  - pull_request
+
+jobs:
+  build:
+    name: Build (${{ matrix.rust-version }})
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust-version }}
+          profile: minimal
+          components: clippy, rustfmt
+
+      - name: Check
+        uses: actions-rs/cargo@v1
+        with:
+          command: check
+
+      - name: Test
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+
+      - name: Lint
+        uses: actions-rs/cargo@v1
+        with:
+          command: clippy
+          args: -- -Dwarnings
+
+      - name: Format
+        uses: actions-rs/cargo@v1
+        with:
+          command: fmt
+          args: --all -- --check
+
+    strategy:
+      matrix:
+        rust-version:
+          - nightly
+          - stable
