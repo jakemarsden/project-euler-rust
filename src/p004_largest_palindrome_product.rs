@@ -17,33 +17,22 @@
 
 pub fn compute(digits: u32) -> u32 {
     debug_assert_ne!(digits, 0);
+    let min = 10_u32.pow(digits - 1) as u32;
+    let max = 10_u32.pow(digits) as u32 - 1;
 
-    let mut min = 1;
-    for _ in 0..digits - 1 {
-        min *= 10;
-    }
-    let max = min * 10 - 1;
-
-    let mut max_palindromic_product = 1;
+    let mut max_product = 0;
     for lhs in min..=max {
         for rhs in lhs..=max {
             let product = lhs * rhs;
-            if product > max_palindromic_product && is_palindromic(product) {
-                max_palindromic_product = product;
+            if product > max_product && is_palindrome(product) {
+                max_product = product;
             }
         }
     }
-    max_palindromic_product
+    max_product
 }
 
-fn is_palindromic(n: u32) -> bool {
-    if n < 10 {
-        return true;
-    }
-    if n <= 100 {
-        return n % 11 == 0;
-    }
-
+fn is_palindrome(n: u32) -> bool {
     let str = n.to_string();
     let digits = str.as_bytes();
 

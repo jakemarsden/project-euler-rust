@@ -7,6 +7,11 @@
 //! 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
 //! ```
 //!
+//! ```rust
+//! # use project_euler::p002_even_fibonacci_numbers::*;
+//! assert_eq!(compute(100), 2 + 8 + 34);
+//! ```
+//!
 //! By considering the terms in the Fibonacci sequence whose values do not exceed four million, find
 //! the sum of the even-valued terms.
 //!
@@ -15,18 +20,22 @@
 //! assert_eq!(compute(4_000_000), 4_613_732);
 //! ```
 
+use std::iter;
+
 pub fn compute(max_exclusive: u32) -> u32 {
-    let mut sum = 0;
-    let mut n1;
-    let mut n2 = 0;
-    let mut n3 = 1;
-    while n3 < max_exclusive {
+    fibonacci_numbers()
+        .take_while(|x| x < &max_exclusive)
+        .filter(|x| x % 2 == 0)
+        .sum()
+}
+
+fn fibonacci_numbers() -> impl Iterator<Item = u32> {
+    let mut n1 = 0;
+    let mut n2 = 1;
+    iter::from_fn(move || {
+        let n3 = n1 + n2;
         n1 = n2;
         n2 = n3;
-        n3 = n1 + n2;
-        if n3 % 2 == 0 {
-            sum += n3;
-        }
-    }
-    sum
+        Some(n3)
+    })
 }
