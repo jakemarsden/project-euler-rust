@@ -8,5 +8,7 @@ pub mod p007_10001st_prime;
 pub mod p008_largest_product_in_a_series;
 pub mod p009_special_pythagorean_triplet;
 pub mod p010_summation_of_primes;
+pub mod p011_largest_product_in_a_grid;
+pub mod p012_highly_divisible_triangular_number;
 
 mod util;
