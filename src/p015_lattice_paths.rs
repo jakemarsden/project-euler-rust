@@ -17,16 +17,14 @@
 //! assert_eq!(compute(20), 137_846_528_820);
 //! ```
 
+/// ```text
+/// path_count =                 (2n)! / (n!)^2
+///            = (n!)(n+1)(n+2)...(2n) / (n!)(n!)
+///            =     (n+1)(n+2)...(2n) / n!
+/// ```
 pub fn compute(grid_size: u32) -> u64 {
-    traverse_grid(grid_size, grid_size)
-}
-
-fn traverse_grid(w: u32, h: u32) -> u64 {
-    if w == 0 || h == 0 {
-        // only one path to the end from here
-        1
-    } else {
-        // at least 2 paths to the end from here
-        traverse_grid(w - 1, h) + traverse_grid(w, h - 1)
-    }
+    let n = grid_size as u128;
+    let dividend = (n + 1..=2 * n).product::<u128>();
+    let divisor = (1..=n).product::<u128>();
+    (dividend / divisor) as u64
 }
