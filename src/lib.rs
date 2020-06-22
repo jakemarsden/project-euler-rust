@@ -14,5 +14,6 @@ pub mod p013_large_sum;
 pub mod p014_longest_collatz_sequence;
 pub mod p015_lattice_paths;
 pub mod p016_power_digit_sum;
+pub mod p017_number_letter_counts;
 
 mod util;
