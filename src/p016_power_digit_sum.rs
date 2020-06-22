@@ -18,7 +18,8 @@ use super::util;
 
 pub fn compute(exponent: u32) -> u32 {
     let n = power_of_2_numeric_str(&exponent);
-    n.as_bytes().iter()
+    n.as_bytes()
+        .iter()
         .map(|ch| util::from_numeric_char(*ch) as u32)
         .sum()
 }
