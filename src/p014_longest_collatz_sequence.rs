@@ -19,12 +19,12 @@
 //!
 //! Which starting number, under one million, produces the longest chain?
 //!
-//! NOTE: Once the chain starts the terms are allowed to go above one million.
-//!
 //! ```rust
 //! # use project_euler::p014_longest_collatz_sequence::*;
 //! assert_eq!(compute(1_000_000), 837_799);
 //! ```
+//!
+//! NOTE: Once the chain starts the terms are allowed to go above one million.
 
 pub fn compute(max_seed_exclusive: u32) -> u32 {
     let mut longest_chain_len = 1;
