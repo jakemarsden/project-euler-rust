@@ -110,6 +110,8 @@
 //! assert_eq!(compute(), "5537376230");
 //! ```
 
+use super::util;
+
 static VALUES: [&str; 100] = [
     "37107287533902102798797998220837590246510135740250",
     "46376937677490009712648124896970078050417018260538",
@@ -216,44 +218,7 @@ static VALUES: [&str; 100] = [
 pub fn compute() -> String {
     let mut accumulator = String::from("0");
     for value in VALUES.iter() {
-        add_numeric_strs(value, &mut accumulator);
+        util::add_numeric_strs(value, &mut accumulator);
     }
     accumulator.chars().take(10).collect()
-}
-
-fn add_numeric_strs(addend: &str, accumulator: &mut String) {
-    if addend.len() > accumulator.capacity() {
-        // Since we need to grow anyway, add capacity for the carry digit in case it's needed
-        accumulator.reserve_exact(addend.len() - accumulator.len() + 1);
-    }
-    if addend.len() > accumulator.len() {
-        let placeholder = "0".repeat(addend.len() - accumulator.len());
-        accumulator.insert_str(0, placeholder.as_str());
-    }
-
-    let add_bytes = addend.as_bytes();
-    let mut add_idx = add_bytes.len();
-    let mut carry = false;
-    unsafe {
-        let acc_bytes = accumulator.as_mut_vec();
-        for acc_idx in (0..acc_bytes.len()).rev() {
-            let mut acc = acc_bytes.get_mut(acc_idx).unwrap();
-            let add = if add_idx > 0 {
-                add_idx -= 1;
-                add_bytes[add_idx]
-            } else {
-                b'0'
-            };
-            add_numeric_chars(add, &mut acc, &mut carry);
-        }
-        if carry {
-            acc_bytes.insert(0, b'1');
-        }
-    }
-}
-
-fn add_numeric_chars(addend: u8, accumulator: &mut u8, carry: &mut bool) {
-    let out = (*accumulator - b'0') + (addend - b'0') + *carry as u8;
-    *accumulator = (out % 10) + b'0';
-    *carry = out / 10 != 0;
 }
