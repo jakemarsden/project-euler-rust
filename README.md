@@ -1,4 +1,4 @@
-# project-euler-rust
+# project-euler.rs
 
 My solutions to [Project Euler](https://projecteuler.net/) problems to help me learn idiomatic Rust
 
@@ -6,5 +6,5 @@ My solutions to [Project Euler](https://projecteuler.net/) problems to help me l
 
 **Beware of spoilers** if you wish to attempt them yourself.
 
-[workflow-ci]: https://github.com/jakemarsden/project-euler-rust/actions?query=workflow%3ACI
-[workflow-ci-badge]: https://github.com/jakemarsden/project-euler-rust/workflows/CI/badge.svg
+[workflow-ci]: https://github.com/jakemarsden/project-euler.rs/actions?query=workflow%3ACI
+[workflow-ci-badge]: https://github.com/jakemarsden/project-euler.rs/workflows/CI/badge.svg
