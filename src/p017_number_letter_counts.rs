@@ -154,7 +154,7 @@ fn number_word_len(mut n: u32) -> StringLen {
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
     #[test]
     fn three_hundred_and_forty_two() {
         assert_eq!(super::number_word_len(342).len(), 23);
