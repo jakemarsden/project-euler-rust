@@ -16,5 +16,6 @@ pub mod p015_lattice_paths;
 pub mod p016_power_digit_sum;
 pub mod p017_number_letter_counts;
 pub mod p018_maximum_path_sum_i;
+pub mod p019_counting_sundays;
 
 mod util;
